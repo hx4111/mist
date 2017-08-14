@@ -50,8 +50,8 @@
                         "download": {
                             "url": "http://geth.wky.com/download/geth-darwin-amd64-1.7.0-0cc9b879.tar.gz",
                             "type": "tar",
-                            "md5": "faf0aa0af6d90685deeef70062d653f5",
-                            "bin": "geth-darwin-amd64-1.6.6-10a45cb5/geth"
+                            "md5": "004c638ff4c1a580a31f9c3ca823b030",
+                            "bin": "geth-darwin-amd64-1.7.0-0cc9b879/geth"
                         },
                         "bin": "geth",
                         "commands": {
@@ -61,7 +61,7 @@
                                 ],
                                 "output": [
                                     "Geth",
-                                    "1.6.6"
+                                    "1.7.0"
                                 ]
                             }
                         }
@@ -70,10 +70,10 @@
                 "win": {
                     "x64": {
                         "download": {
-                            "url": "https://gethstore.blob.core.windows.net/builds/geth-windows-amd64-1.6.6-10a45cb5.zip",
+                            "url": "http://geth.wky.com/download/geth-windows-amd64-1.7.0-0cc9b879.zip",
                             "type": "zip",
-                            "md5": "2a73767451a27538f3f335bf5d466658",
-                            "bin": "geth-windows-amd64-1.6.6-10a45cb5\\geth.exe"
+                            "md5": "929bc7b0c7afcf773ab2a7a4f1a4abc8",
+                            "bin": "geth-windows-amd64-1.7.0-0cc9b879\\geth.exe"
                         },
                         "bin": "geth.exe",
                         "commands": {
@@ -83,27 +83,7 @@
                                 ],
                                 "output": [
                                     "Geth",
-                                    "1.6.6"
-                                ]
-                            }
-                        }
-                    },
-                    "ia32": {
-                        "download": {
-                            "url": "https://gethstore.blob.core.windows.net/builds/geth-windows-386-1.6.6-10a45cb5.zip",
-                            "type": "zip",
-                            "md5": "08188b29b8f2ba49db52215cc279c23e",
-                            "bin": "geth-windows-386-1.6.6-10a45cb5\\geth.exe"
-                        },
-                        "bin": "geth.exe",
-                        "commands": {
-                            "sanity": {
-                                "args": [
-                                    "version"
-                                ],
-                                "output": [
-                                    "Geth",
-                                    "1.6.6"
+                                    "1.7.0"
                                 ]
                             }
                         }
