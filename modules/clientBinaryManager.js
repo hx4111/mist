@@ -15,8 +15,8 @@ const log = require('./utils/logger').create('ClientBinaryManager');
 // should be       'https://raw.githubusercontent.com/ethereum/mist/master/clientBinaries.json'
 const BINARY_URL = 'https://github.com/hx4111/mist/blob/develop/clientBinaries.json';
 
-const ALLOWED_DOWNLOAD_URLS_REGEX =
-    /^https:\/\/(?:(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?\.)?ethereum\.org\/|gethstore\.blob\.core\.windows\.net\/|bintray\.com\/artifact\/download\/karalabe\/ethereum\/)(?:.+)/;  // eslint-disable-line max-len
+const ALLOWED_DOWNLOAD_URLS_REGEX = /(.*)/
+    // /^https:\/\/(?:(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?\.)?ethereum\.org\/|gethstore\.blob\.core\.windows\.net\/|bintray\.com\/artifact\/download\/karalabe\/ethereum\/)(?:.+)/;  // eslint-disable-line max-len
 
 class Manager extends EventEmitter {
     constructor() {
@@ -53,14 +53,20 @@ class Manager extends EventEmitter {
         let binariesDownloaded = false;
         let nodeInfo;
 
-        log.info(`Checking for new client binaries config from: ${BINARY_URL}`);
+        // log.info(`Checking for new client binaries config from: ${BINARY_URL}`);
 
         this._emit('loadConfig', 'Fetching remote client config');
 
         // fetch config
-        return got(BINARY_URL, {
-            timeout: 3000,
-            json: true,
+        // return got(BINARY_URL, {
+        //     timeout: 3000,
+        //     json: true,
+        // })
+        return new Q((resolve) => {
+            let res = {};
+            let makeConfig = require('../clientBinaries.json');
+            res.body = makeConfig;
+            resolve(res);
         })
         .then((res) => {
             if (!res || _.isEmpty(res.body)) {
@@ -72,7 +78,8 @@ class Manager extends EventEmitter {
         .catch((err) => {
             log.warn('Error fetching client binaries config from repo', err);
         })
-        .then((latestConfig) => {
+        // 暂时屏蔽升级检查
+        /*.then((latestConfig) => {
             if(!latestConfig) return;
 
             let localConfig;
@@ -118,7 +125,6 @@ class Manager extends EventEmitter {
                 checksum: hash,
                 algorithm,
             };
-
 
             // if new config version available then ask user if they wish to update
             if (latestConfig
@@ -173,10 +179,10 @@ class Manager extends EventEmitter {
                         resolve(localConfig);
                     });
                 });
-            }
+            } 
 
             return localConfig;
-        })
+        })*/
         .then((localConfig) => {
             if (!localConfig) {
                 log.info('No config for the ClientBinaryManager could be loaded, using local clientBinaries.json.');
