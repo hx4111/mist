@@ -112,7 +112,7 @@ const syncDataFromBackend = function (coll) {
             // we do inserts slowly, to avoid race conditions when it comes
             // to updating the UI
             dataJson.forEach((record) => {
-                Tracker.afterFlush(() => {
+                Tracker.afterFlush(() => { // meteor api
                     try {
                         // On Meteor startup if a record contains a redirect to about:blank
                         // page, the application process crashes.
@@ -150,7 +150,7 @@ exports.frontendSyncInit = function (coll) {
 
     const collName = coll._name;
 
-    coll.onceSynced = new Promise((resolve, reject) => {
+    coll.onceSynced = new Promise((resolve, reject) => { // meteor api
         syncDoneResolver = resolve;
     });
 
@@ -161,7 +161,7 @@ exports.frontendSyncInit = function (coll) {
     })
     .then(() => {
         // start watching for changes
-        coll.find().observeChanges({
+        coll.find().observeChanges({ // observeChanges 是meteor的api
             added(id, fields) {
                 ipc.send('dbSync-add', {
                     collName,
