@@ -41,7 +41,7 @@ Template['views_webview'].onRendered(function () {
 
     // set page history
     webview.addEventListener('dom-ready', function (e) {
-
+        
         var titleFull = webview.getTitle(),
             title = titleFull;
 
@@ -126,6 +126,8 @@ Template['views_webview'].helpers({
         var template = Template.instance();
         var tab = Tabs.findOne(this._id, { fields: { redirect: 1 } });
         var url;
+        console.info('tab')
+        console.info(tab) // { _id:"wallet"}
 
         if (tab) {
 
@@ -165,8 +167,11 @@ Template['views_webview'].helpers({
                     url: url
                 } });
             }
+            console.info('url: ' + url);
+            url = Helpers.formatUrl(url);
+            console.info('url: ' + url);
 
-            return Helpers.formatUrl(url);
+            return url;
         }
     }
 });

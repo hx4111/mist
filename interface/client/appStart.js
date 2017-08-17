@@ -38,8 +38,10 @@ mistInit = function () {
             { _id: 'wallet' },
             {
                 $set: {
-                    url: 'https://wallet.ethereum.org',
-                    redirect: 'https://wallet.ethereum.org',
+                    // url: 'https://wallet.ethereum.org',
+                    // redirect: 'https://wallet.ethereum.org',
+                    url: 'http://localhost:3030',
+                    redirect: 'http://localhost:3030',
                     position: 1,
                     permissions: {
                         admin: true
